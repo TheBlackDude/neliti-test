@@ -70,8 +70,6 @@ Type command below to run tests:
 Run word counts
 ---------------
 
-Type command below to run tests:
-
 .. code:: bash
 
     docker-compose run neliti count 
