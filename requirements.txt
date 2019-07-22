@@ -4,3 +4,4 @@ beautifulsoup4==4.8.0
 ipython==7.6.0
 flake8==3.5.0
 flake8-mypy==17.3.3
+python-decouple==3.1
