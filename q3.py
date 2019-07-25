@@ -29,8 +29,8 @@ def get_journal_statistics() -> Dict:
     summary = {}
     for publication in Publication.objects.all():
         journal_id = publication.journal.id
-        pageview = publication.hit.objects.filter(action=Hit.PAGEVIEW)
-        download = publication.hit.objects.filter(action=Hit.DOWNLOAD)
-        summary[journal_id] = (pageview, download)
+        total_views = publication.hit.objects.filter(action=Hit.PAGEVIEW).count()
+        total_downloads = publication.hit.objects.filter(action=Hit.DOWNLOAD).count()
+        summary[journal_id] = (total_views, total_downloads)
     return summary
 
