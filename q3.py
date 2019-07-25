@@ -1,3 +1,5 @@
+from typing import Dict
+
 class Hit(models.Model):
 
     PAGEVIEW = 'PV'
@@ -22,7 +24,13 @@ class Publication(models.Model):
     # ... remaining fields omitted
 
 
-def get_journal_statistics():
+def get_journal_statistics() -> Dict:
     # Construct summary dict in the form {journal_id -> (total_views, total_downloads)}
+    summary = {}
+    for publication in Publication.objects.all():
+        journal_id = publication.journal.id
+        pageview = publication.hit.objects.filter(action=Hit.PAGEVIEW)
+        download = publication.hit.objects.filter(action=Hit.DOWNLOAD)
+        summary[journal_id] = (pageview, download)
     return summary
 
